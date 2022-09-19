@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <title>Animals</title>
+    <link rel = "stylesheet" th:href ="@{/css/cssFTW.css}">
+
+</head>
+
+<body>
+
+
+
+
+<div class="main">
+
+
+
+    <h5 th:text="${ 'Animals from ' + countryName}">
+
+    </h5>
+    <a th:href="@{/countries}"> BACK </a>
+
+
+
+
+
+
+    <ul>
+
+
+        <th:block th:each="ani:${animals}">
+
+            <li >
+                <a th:text="${ani.animalName}" >
+
+                </a>
+
+                <form method= "post" th:action = @{/animals/delete/__${ani.id}__}>
+                    <input type="hidden" name="country" th:value="${countryName}">
+                    <input type="submit" value="delete">
+
+                </form>
+
+            </li>
+
+        </th:block>
+
+    </ul>
+
+    <form method= "post" th:action = @{/addAnimal/__${countryName}__}>
+
+        <input type="text" name="animalName">
+
+        <input type="submit" value="create">
+
+
+    </form>
+
+
+
+
+
+
+</div>
+</body>
+
+</html>
